@@ -5,7 +5,7 @@ $$\displaylines{
 \mathbf{A}=\mathbf{E}^{-1}\mathbf{U}\\
 so ~~~ \mathbf{L}=\mathbf{E}^{-1}
 }$$
-L是下三角矩阵
+L是下三角矩阵，且对角线都是1
 还可以
 $$\displaylines{
 \mathbf{A}=\mathbf{L}\mathbf{D}\mathbf{U}
@@ -33,10 +33,10 @@ about ~~~ \frac{1}{3}n^{3}
 $$\displaylines{
 n^{2}
 }$$
-#### 行互换
+### 行互换
 主元位置为0时
 左乘置换矩阵
-置换矩阵
+置换矩阵：重新排列的单位矩阵
 置换第一行和第二行：将单位阵的第一第二行互换
 $$\displaylines{
 \mathbf{P}_{12}=\begin{bmatrix}
@@ -47,5 +47,22 @@ $$\displaylines{
 }$$
 ##### 置换矩阵的逆等于其转置
 $$\displaylines{
-\mathbf{A}^{-1}=\mathbf{A}^{T}
+\mathbf{P}^{-1}=\mathbf{P}^{T}
+}$$
+$$\displaylines{
+\mathbf{P}\mathbf{A}=\mathbf{L}\mathbf{U}
+}$$
+##### 有n的阶乘种置换矩阵
+##### 置换矩阵都可逆
+### 转置
+$$\displaylines{
+\mathbf{A}_{ij}=(\mathbf{A}^{T})_{ji}
+}$$
+##### 转置之后不变的就是对称矩阵
+##### 矩阵的转置乘矩阵得到对称矩阵
+$$\displaylines{
+\mathbf{R}^{T}\mathbf{R} ~~~ is ~~~ symmetric ~~~
+}$$
+$$\displaylines{
+(\mathbf{R}^{T}\mathbf{R})^{T}=\mathbf{R}^{T}\mathbf{R}^{T  T}=\mathbf{R}^{T}\mathbf{R}
 }$$
