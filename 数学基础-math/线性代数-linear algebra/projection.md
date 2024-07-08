@@ -307,3 +307,10 @@ $$
 **the column space of  A  is perpendicular to the null space of A transpose** 
 - Pb: b project onto column space of A
 - (I-P)b: b project onto null space of A transpose(N(Atr))
+
+
+
+
+
+
+
