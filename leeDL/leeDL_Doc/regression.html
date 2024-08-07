@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.17.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.17.0/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.17.0/dist/index.js"></script><script>((r) => {
+            setTimeout(r);
+          })(() => {
+  const { markmap, mm } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute("style", "position:absolute;bottom:20px;right:20px");
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+            })(() => window.markmap,null,{"content":"训练器","children":[{"content":"推理和评估中禁用梯度计算","children":[{"content":"节约计算","children":[],"payload":{"lines":"21,22"}},{"content":"节省内存","children":[],"payload":{"lines":"22,24"}}],"payload":{"lines":"19,20"}},{"content":"张量转换成标量","children":[{"content":"张量有大量元数据，减少内存","children":[],"payload":{"lines":"26,27"}},{"content":"便于打印和展示","children":[],"payload":{"lines":"27,28"}},{"content":"便于和其他标量计算","children":[],"payload":{"lines":"28,29"}},{"content":"避免保留计算图","children":[],"payload":{"lines":"29,30"}}],"payload":{"lines":"24,25"}}],"payload":{"lines":"0,1"}},null)</script>
+</body>
+</html>
