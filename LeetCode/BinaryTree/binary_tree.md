@@ -1026,3 +1026,192 @@ public:
 ```go
 
 ```
+### 题号：235 二叉搜索树的最近公共祖先
+#### 思路：
+- 关键在于公共祖先的值v:min(pv, qv)<v<max(p,q) 
+- 从上往下的第一个满足v的节点就是最近公共祖先
+#### c++实现：
+```c++
+class Solution {
+public:
+	TreeNode* res = nullptr;
+	void traversal(TreeNode* root, TreeNode* p, TreeNode* q){
+		if (root == nullptr)return;
+		int minv = min(p->val, q->val);
+		int maxv = max(p->val, q->val);
+		if (root->val > minv && root->val < maxv){/* 当一个处于p和q之间的值是最大值的时候 */
+			if (res == nullptr){
+				res = root;
+			}
+		}else if(root->val == maxv){/* 当p或q中最大值是结果的时候，这时小的值在大的值的左子树 */
+			if (res == nullptr){
+				res = root;
+			}
+		}else if (root->val == minv){
+			if (res == nullptr){
+				res = root;
+			}
+		}
+		lowestCommonAncestor(root->left, p, q);
+		lowestCommonAncestor(root->right, p, q);
+		return;
+	}
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+		traversal(root, p, q);
+		return res;
+    }
+};
+```
+#### go实现：
+```go
+
+```
+### 题号：701 二叉搜索树插入
+#### 思路：
+- 遍历二叉树遇到空位置就插入
+- 如果val > 节点值，从节点的右边找空位，反之从左边找
+#### c++实现：
+```c++
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+		if (root == nullptr){
+			TreeNode *node = new(TreeNode);
+			node->val = val;
+			return node;
+		}
+		if (root->val > val) root->left = insertIntoBST(root->left,val);
+		if(root->val < val)root->right = insertIntoBST(root->right,val);
+		return root;
+    }
+};
+```
+#### go实现：
+```go
+
+```
+### 题号：450 删除二叉搜索树中的节点
+#### 思路：
+- 复杂的点在与找到了要删除的节点dn，并且dn左右子树都存在
+	- 删除节点的左孩子成为右子树的最左边节点的左孩子
+	- 删除节点的右孩子顶替当前节点
+#### c++实现：
+```c++
+class Solution {
+public:
+    TreeNode* deleteNode(TreeNode* root, int key) {
+		if (root == nullptr)return root;
+		if (root->val == key){
+			if (!root->left && !root->right){
+				delete root;
+				return nullptr;
+			}
+			else if (root->left && !root->right){
+				TreeNode *node = root->left;
+				delete root;
+				return node;
+			}
+			else if (!root->left && root->right){
+				TreeNode *node = root->right;
+				delete root;
+				return node;
+			}
+			else if (root->left && root->right){
+				TreeNode *leftNode = root->left;
+				TreeNode *rightNode = root->right;
+				TreeNode *rightLeft = rightNode;
+				while(rightLeft->left){
+					rightLeft = rightLeft->left;
+				}
+				rightLeft->left = leftNode;
+				delete root;
+				return rightNode;
+			}
+		}
+		if (root->val > key) root->left = deleteNode(root->left, key);
+		if (root->val < key) root->right =  deleteNode(root->right, key);
+		return root;
+    }
+};
+```
+#### go实现：
+```go
+
+```
+### 题号：669 修剪二叉搜索树
+#### 思路：
+- 如果当前节点值 > 最大值，它的右子树肯定都不在区间内，则递归它的左子树找到在区间内的节点并返回
+- 如果当前节点值 < 最小值，递归它的右子树找到区间内的节点返回
+- 如果当前节点值在区间内，递归处理它的左右子树，返回的节点作为当前节点的左右孩子
+#### c++实现：
+```c++
+class Solution {
+public:
+    TreeNode* trimBST(TreeNode* root, int low, int high) {
+		if (root == nullptr)return root;
+		if (root->val > high){
+			return trimBST(root->left, low, high);
+		}else if (root->val < low){
+			return trimBST(root->right, low, high);
+		}else{
+			root->left = trimBST(root->left, low, high);
+			root->right = trimBST(root->right, low, high);
+			return root;
+		}
+    }
+};
+```
+#### go实现：
+```go
+
+```
+### 题号：108 有序数组转二叉搜索树
+#### 思路：
+- 从数组中间拆分数组，中间元素作为父节点，然后构造左右孩子
+#### c++实现：
+```c++
+class Solution {
+public:
+	TreeNode *traversal(vector<int>& nums, int left, int right){
+		if (left > right)return nullptr;
+		int mid = left+(right - left)/2;
+		TreeNode *node = new TreeNode(nums[mid]);
+		node->left = traversal(nums, left, mid-1);
+		node->right = traversal(nums, mid+1, right);
+		return node;
+	}
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+		return traversal(nums, 0, nums.size()-1);
+    }
+};
+```
+#### go实现：
+```go
+
+```
+### 题号：538 二叉搜索树转累加树
+#### 思路：
+- 右中左顺序遍历，对每一个节点的处理就是加上前一个节点的值 
+- 直接在原树上修改值就行，不用重新构建树
+#### c++实现：
+```c++
+class Solution {
+public:
+	int preVal = 0;
+	void traversal(TreeNode* cur){
+		if (cur == nullptr)return;
+		traversal(cur->right);
+		cur->val += preVal;
+		preVal = cur->val;
+		traversal(cur->left);
+	}
+    TreeNode* convertBST(TreeNode* root) {
+		traversal(root);
+		return root;
+    }
+};
+```
+#### go实现：
+```go
+
+```
