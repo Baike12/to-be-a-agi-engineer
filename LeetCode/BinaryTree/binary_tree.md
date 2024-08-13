@@ -782,10 +782,245 @@ public:
 ```
 ### 题号：617 合并二叉树
 #### 思路：
-- 
+- 同时遍历两个树
+- 复用其中一个树作为基础，下面以复用t1为例
+- 递归终止条件：如果一个节点为空，返回另一个节点，都空返回null
+- 复用t1修改t1节点的值
+- 构建左子节点和右子节点
 #### c++实现：
 ```c++
+class Solution {
+public:
+    TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
+		if (!root1 && root2){
+			return root2;
+		}
+		if (root1 && !root2){
+			return root1;
+		}
+		if(!root1 && !root2){
+			return nullptr;
+		}
+		root1->val += root2->val;
+		root1->left = mergeTrees(root1->left, root2->left);
+		root1->right = mergeTrees(root1->right, root2->right);
+		return root1;
+    }
+};
 
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+		while(root != nullptr){
+			if (root->val > val)root = root->left;
+			else if(root->val < val) root = root->right;
+			else return root;
+		}
+		return nullptr;
+    }
+};
+```
+#### go实现：
+```go
+
+```
+### 题号：700 二叉搜索树中的搜索
+#### 思路：
+- 返回子树其实是返回节点
+- 搜索树的有序性指引递归方向
+	- 在使用迭代法时使得不再需要栈或者队列，因为遍历的方向是确定的
+#### c++实现：
+```c++
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+		if (root == nullptr){
+			return nullptr;
+		}
+		if (root->val ==  val){
+			return root;
+		}
+		TreeNode* node = nullptr;
+		if (root->val > val){
+			node = searchBST(root->left, val);
+		}
+		if (root->val < val){
+			node = searchBST(root->right, val);
+		}
+		return node;
+    }
+};
+```
+#### go实现：
+```go
+
+```
+### 题号：98 验证二叉搜索树
+#### 思路：
+- 不能单纯比较灭一个节点的左右子节点大小关系
+	- 4,3,7,1,8这样的树就是每一个节点的左子节点都 < 它，右子节点都 > 它，但是不是二叉搜索树
+- 二叉搜索树的中序遍历是递增序列
+- 更好的办法是在递归中用一个值来记录当前最大值maxval，每一次处理的节点都要 > 这个最小值
+- 最大值maxval要初始化为可能得最小值
+#### c++实现：
+```c++
+class Solution {
+public:
+	long long maxVal = LONG_MIN;
+    bool isValidBST(TreeNode* root) {
+		if (root == nullptr)return true;
+		bool lIVB = isValidBST(root->left);
+		if (maxVal < root->val){
+			maxVal = root->val;
+		}else{
+			return false;
+		}
+		bool rIVB = isValidBST(root->right);
+		return rIVB && lIVB;
+    }
+};
+```
+#### go实现：
+```go
+
+```
+
+### 题号：530 二叉搜索树的最小绝对差
+#### 思路：
+- ~~最小差一定发生在一个节点和它的左子节点或者右子节点之间~~
+	- 未必
+	- 理解题目要准确
+- 最小差一定发生在中序遍历中一个节和它的前一个之间
+#### c++实现：
+```c++
+// 这是相邻节点之间差值最小的算法
+class Solution {
+public:
+	int minDiff = INT_MAX;
+    int getMinimumDifference(TreeNode* root) {
+        int lmd = minDiff;
+        int rmd = minDiff;
+		if(root->left){
+			lmd = getMinimumDifference(root->left);
+		}
+		if (root->right){
+			rmd = getMinimumDifference(root->right);
+		}
+		if (root->left && abs(root->val-root->left->val) < minDiff){
+			minDiff = abs(root->val-root->left->val);
+            cout << minDiff;
+		}
+		if (root->right && abs(root->val-root->right->val)< minDiff){
+			minDiff = abs(root->val-root->right->val);
+            cout << minDiff;
+		}
+        int minv = min(lmd, rmd);
+		return min(minDiff, minv);
+    }
+};
+
+// 这是正确答案
+class Solution {
+public:
+	int minDiff = INT_MAX;
+	TreeNode * pre = nullptr;
+    int getMinimumDifference(TreeNode* root) {
+		if (root == nullptr)return minDiff;
+        int lmd = minDiff;
+		int rmd = minDiff;
+		lmd = getMinimumDifference(root->left);
+		if (pre != nullptr){
+			minDiff = min(minDiff, root->val-pre->val);
+		}
+        pre = root;
+		rmd = getMinimumDifference(root->right);
+		int minv= min(lmd, rmd);
+		minDiff = min(minDiff, minv);
+		return minDiff;
+    }
+};
+```
+#### go实现：
+```go
+
+```
+### 题号：501 二叉搜索树中的众数
+#### 思路：
+- 中序遍历：如果前一个节点的值等于当前节点值就是重复元素，重复达到最大重复次数就可以加入众数列表
+#### c++实现：
+```c++
+class Solution {
+public:
+	int curCount = 0;
+	int maxCount = 0;
+	TreeNode * pre = nullptr;
+	vector<int> res;
+
+	void traversal(TreeNode *cur){
+		if (cur == nullptr)return;
+		traversal(cur->left);
+
+		if (pre == nullptr){
+			curCount = 1;
+		}else if (cur->val ==  pre->val){
+			curCount++;
+		}else{
+			curCount=1;
+		}
+
+		if (curCount == maxCount){
+			res.push_back(cur->val);
+		}else if (curCount > maxCount){
+			res.clear();
+			maxCount = curCount;
+			res.push_back(cur->val);
+		}
+		pre = cur;
+
+		traversal(cur->right);
+		return;
+	}
+    vector<int> findMode(TreeNode* root) {
+		traversal(root);
+		return res;
+    }
+};
+```
+#### go实现：
+```go
+
+```
+### 题号：236 二叉树的最近公共祖先
+#### 思路：
+- 递归中搜索一条边的写法大概是if(递归函数(cur->left))retrun;
+	- 搜索整棵树：left=递归函数(cur->left)
+	- 区别在于返回值是否需要进一步处理
+- 遍历整棵树：因为后序遍历要处理完左右子节点后才能返回
+- 整体思路
+	- 后序遍历
+	- 遇到p或者q或者空返回
+	- 单层处理：
+		- 如果左右子树返回的都不是空，说明当前节点就是要找的节点，返回当前节点
+		- 如果一个为空一个不为空，返回不为空的给上一层
+#### c++实现：
+```c++
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+		if(root == p || root == q || root == nullptr)return root;
+		TreeNode* left = lowestCommonAncestor(root->left, p, q);
+		TreeNode* right = lowestCommonAncestor(root->right, p, q);
+		if (left && right){
+			return root;
+		}else if(!left && right){
+			return right;
+		}else if(!right && left){
+			return left;
+		}else{
+			return nullptr;
+		}
+    }
+};
 ```
 #### go实现：
 ```go
