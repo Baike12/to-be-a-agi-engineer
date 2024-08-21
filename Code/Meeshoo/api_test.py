@@ -1,16 +1,19 @@
 from openai import OpenAI
-from dotenv import load_dotenv, find_dotenv
-_ = load_dotenv(find_dotenv())
+# from dotenv import load_dotenv, find_dotenv
+# _ = load_dotenv(find_dotenv())
+# client = OpenAI(api_key="sk-jHN7UG4LANTFza1SyEvbrO6rtA3KHXUeKVwanfdC7NUy8dxY",base_url="https://api.fe8.cn/v1")
 
-client = OpenAI(base_url="https://api.deepseek.com")
-
-response = client.chat.completions.create(
-    model="deepseek-chat",
+llm = OpenAI(api_key="sk-MsXZVIkrfqYUuSzd953wSUyFLmjbgzI9bz78NyKSeD3TpNjB",base_url="https://api.fe8.cn/v1")
+completion = llm.chat.completions.create(
+    model="gpt-4o-mini",
+    # model="deepseek-chat",
     messages=[
-        # {"role": "system", "content": "You are a helpful assistant"},
-        {"role": "user", "content": "ahk中可以捕获alt按下，然后按下m，最后alt弹起这一系列动作吗"},
-    ],
-    stream=False
+        {"role": "system", "content": "You are a helpful assistant."},
+        {
+            "role": "user",
+            "content": "halo."
+        }
+    ]
 )
 
-print(response.choices[0].message.content)
+print(completion.choices[0].message)

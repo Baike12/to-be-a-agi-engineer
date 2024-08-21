@@ -321,7 +321,7 @@ def show_model(model_file):
 
 
 def main():
-    show_model("leeDl_regression_model.ckpt")
+    query()
 
 
 if __name__ == "__main__":
