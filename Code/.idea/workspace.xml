@@ -5,36 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aaaa0660-a083-4ffa-83d5-f6479d57390a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/Code.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Agent/Action.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Agent/Meeshoo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Agent/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Models/Factory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Tools/FileQATool.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Tools/FileTool.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Tools/FinishTool.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Tools/Tools.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Tools/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Utils/CallbackHandlers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Utils/PrintUtils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/Utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/pdf_rag.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/pdf_remove.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/prompt/main.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/template.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/test_chroma.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/test_langchain.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Meeshoo/test_llamaindex.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Agent/Meeshoo.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Agent/Meeshoo.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Code.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Meeshoo/api_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Meeshoo/api_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LeetCode/BinaryTree/binary_tree.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../leeDL/leeDl_Code/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/../leeDL/leeDl_Code/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fine-Tuning/llama_hotel_server.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Fine-Tuning/llama_hotel_server.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LeetCode/sort.md" beforeDir="false" afterPath="$PROJECT_DIR$/../LeetCode/sort.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LeetCode/string.md" beforeDir="false" afterPath="$PROJECT_DIR$/../LeetCode/string.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,17 +38,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/Code/Python/AgiClass/autogpt",
-    "settings.editor.selected.configurable": "com.xxxtai.smartinput"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Code/Python/AgiClass/autogpt&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.xxxtai.smartinput&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Meeshoo" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Code" />
