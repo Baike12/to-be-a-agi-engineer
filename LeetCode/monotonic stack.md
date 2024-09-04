@@ -228,7 +228,6 @@ func largestRectangleArea(heights []int) int {
 			}
 			stack = append(stack, i)
 		}
-
 	}
 	return maxArea
 }
